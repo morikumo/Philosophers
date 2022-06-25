@@ -6,7 +6,7 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:11:44 by benmoham          #+#    #+#             */
-/*   Updated: 2022/06/25 15:25:23 by mabid            ###   ########.fr       */
+/*   Updated: 2022/06/25 19:02:15 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_utils_arg	*init_struc(t_utils_arg *info, char **av)
 	info->time_eat = ft_atol(av[3]); // argv [3] pour le temps de manger
 	info->time_sleep = ft_atol(av[4]); // argv [4] pour le temps de dormir
 	if (av[5])
-		info->nb_eat = ft_atol(av[5]);
+		info->nb_eat = ft_atol(av[5]); // argv [5] pour limiter le nombre de repas
 	else
-		info->nb_eat = 0;
+		info->nb_eat = 0; // Si il n'y a pas d'argv [5] on n'utilise pas cet variable
 	info->start_time = 0;
 	info->finish_eat = 0;
 	info->stop = 0;
@@ -51,12 +51,12 @@ t_utils_philo	*file_struc(t_utils_philo *philo, t_utils_arg *info, char **av)
 		philo[i].id = i + 1;
 		philo[i].last_meal = 0;
 		philo[i].to_eat = 0;
-		pthread_mutex_init(&philo[i].left_fork, NULL); // Declarer un mutex
+		pthread_mutex_init(&philo[i].left_fork, NULL); // Declarer un mutex pour la fourchette gauche
 		if (i == nb - 1)
-			philo[i].right_fork = &philo[0].left_fork;
+			philo[i].right_fork = &philo[0].left_fork; //A voir : Pour le cas ou il y a un nombre impair
 		else
-			philo[i].right_fork = &philo[i + 1].left_fork;
+			philo[i].right_fork = &philo[i + 1].left_fork;// A voir : Pour le cas ou il y a un nombre pair
 	}
-	free(thread);
+	free(thread); // Free thread pour l'allocation memoire du malloc au dessus
 	return (philo);
 }

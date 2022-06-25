@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:11:31 by benmoham          #+#    #+#             */
-/*   Updated: 2022/02/15 20:20:24 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/06/25 18:06:35 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ long int		ft_atol(char *str);
 int				check_dead(t_utils_philo *philo);
 int				check_stop(t_utils_arg *info);
 int				ft_strlen(char *str);
-int				check_arg(char **av);
-int				check_max(char *av);
+int				check_arg(char **argv);
+int				check_max(char *argv);
 int				check_eat(t_utils_philo *philo);
 int				ft_isdigit(char s);
 void			finish_prog(t_utils_philo *philo);
@@ -71,8 +71,8 @@ void			ft_usleep(long int time_in_ms, t_utils_arg *info);
 void			start_philo(t_utils_philo *philo);
 void			display_msg(t_utils_philo *philo, char *msg, int check_die);
 void			for_eat(t_utils_philo *philo);
-void			*routine(void *arg);
-t_utils_arg		*init_struc(t_utils_arg *th, char **av);
-t_utils_philo	*file_struc(t_utils_philo *philo, t_utils_arg *info, char **av);
+void			*routine(void *argv);
+t_utils_arg		*init_struc(t_utils_arg *th, char **argv);
+t_utils_philo	*file_struc(t_utils_philo *philo, t_utils_arg *info, char **argv);
 
 #endif

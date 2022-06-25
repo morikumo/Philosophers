@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: benmoham <benmoham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:34:18 by benmoham          #+#    #+#             */
-/*   Updated: 2022/02/14 16:34:51 by benmoham         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:05:11 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ int	check_dead(t_utils_philo *philo)
 	return (1);
 }
 
+/**
+ * @brief Va verifier les mutex
+ * 
+ * @param info 
+ * @return int 
+ */
 int	check_stop(t_utils_arg *info)
 {
 	int	ret;
 
-	pthread_mutex_lock(&info->stop_mutex);
+	pthread_mutex_lock(&info->stop_mutex); //Va fermer le mutex pendant un temps x le temps que le philo mange
 	ret = info->stop;
-	pthread_mutex_unlock(&info->stop_mutex);
+	pthread_mutex_unlock(&info->stop_mutex); // une fois qu'il a fini il libere le mutex
 	return (ret);
 }
 
