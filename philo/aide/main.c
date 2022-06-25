@@ -6,7 +6,7 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 14:20:06 by benmoham          #+#    #+#             */
-/*   Updated: 2022/06/25 19:23:35 by mabid            ###   ########.fr       */
+/*   Updated: 2022/06/25 20:27:46 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	if (!philo)
 		return (-1);
 	philo = file_struc(philo, &info, argv); // Va recuperer toutes les variables et les initialiser pour commencer le process
-	start_philo(philo); // 
-	free(philo);
+	start_philo(philo); // ici que tout ce fait
+	free(philo); // Free philo c'est normal
 	return (0);
 }

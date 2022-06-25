@@ -6,7 +6,7 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 16:13:49 by benmoham          #+#    #+#             */
-/*   Updated: 2022/06/25 19:35:22 by mabid            ###   ########.fr       */
+/*   Updated: 2022/06/25 20:13:37 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ void	create_thread(t_utils_philo *philo)
 	finish_prog(philo); // Finish_prog va fermer tout le mutex et thread en cours, si il y a une erreur
 }
 
+/**
+ * @brief Ici que tout ce fait
+ * 
+ * @param philo 
+ */
 void	start_philo(t_utils_philo *philo)
 {
 	philo->info->start_time = actual_time(); // Recupere la variable de temps et a pour objectif de l'afficher sur le cote

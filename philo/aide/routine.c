@@ -6,7 +6,7 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 14:47:31 by benmoham          #+#    #+#             */
-/*   Updated: 2022/06/25 19:52:03 by mabid            ###   ########.fr       */
+/*   Updated: 2022/06/25 20:16:30 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	display_msg(t_utils_philo *philo, char *msg, int check_die)
 {
 	int	die;
 
-	pthread_mutex_lock(&philo->info->write_mutex);
+	pthread_mutex_lock(&philo->info->write_mutex); // Lock la variable 
 	die = 0;
 	if (die == 0)
 	{
@@ -48,12 +48,12 @@ void
 	if (philo->to_eat == philo->info->nb_eat && philo->info->nb_eat != 0) // Si la limite de repas est atteinte on augemente la variable finish_eat pour arreter
 		philo->info->finish_eat++;
 	pthread_mutex_unlock(&philo->info->eat_mutex); // On unlock le mutex bouffe
-	ft_usleep(philo->info->time_eat, philo->info); // Usleep pour gerer les info, delock tt ect
-	pthread_mutex_unlock(rf);
+	ft_usleep(philo->info->time_eat, philo->info); // Usleep pour ajouter le temps de EAT
+	pthread_mutex_unlock(rf); // On libere les fourchettes
 	pthread_mutex_unlock(lf);
-	display_msg(philo, SLEEP, 0);
-	ft_usleep(philo->info->time_sleep, philo->info);
-	display_msg(philo, THINK, 0);
+	display_msg(philo, SLEEP, 0); 
+	ft_usleep(philo->info->time_sleep, philo->info); // Ajoute le temps de SLEEP
+	display_msg(philo, THINK, 0); // Affiche penser pour le temps de l'execution de tt ca
 }
 
 void	take_fork(t_utils_philo *philo)
@@ -71,10 +71,10 @@ void	take_fork(t_utils_philo *philo)
 		pthread_mutex_unlock(&philo->left_fork);
 		return ; // Salam
 	}
-	if (philo->id == philo->info->nb_philo) 
+	if (philo->id == philo->info->nb_philo) // Pour le dernier philo, dit que la fourchette de droite deviens la gauche pour la passer au suivant
 	{
 		l_fork = philo->right_fork;
 		r_fork = &philo->left_fork;
 	}
-	mutex_fork(philo, r_fork, l_fork);
+	mutex_fork(philo, r_fork, l_fork); // L'action FORK , EAT, SLEEP et THINK
 }
