@@ -6,7 +6,7 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:30:33 by mabid             #+#    #+#             */
-/*   Updated: 2022/07/07 13:30:34 by mabid            ###   ########.fr       */
+/*   Updated: 2022/07/07 14:53:18 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ int	check_max(char *av)
 	return (0);
 }
 
+/**
+ * @brief Va verifier si les parametres sont corrects, dans la chaine de caractere av
+ * 
+ * @param av 
+ * @return int 
+ */
 int	check_arg(char **av)
 {
 	int	i;

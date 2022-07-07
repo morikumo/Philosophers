@@ -6,12 +6,19 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:31:04 by mabid             #+#    #+#             */
-/*   Updated: 2022/07/07 13:31:06 by mabid            ###   ########.fr       */
+/*   Updated: 2022/07/07 14:48:25 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
+/**
+ * @brief Affiche le message souhaité selon les conditions donner
+ * 
+ * @param philo 
+ * @param msg 
+ * @param check_die 
+ */
 void	display_msg(t_utils_philo *philo, char *msg, int check_die)
 {
 	int	die;
@@ -20,9 +27,9 @@ void	display_msg(t_utils_philo *philo, char *msg, int check_die)
 	die = 0;
 	if (die == 0)
 	{
-		if (check_die == 1)
+		if (check_die == 1) // Si check_die == 1, on dit que il y a un philo qui est mort, et on passe donc directement a l'unlock du mutex
 			die = 1;
-		if (check_stop(philo->info) != 1)
+		if (check_stop(philo->info) != 1) // Si le stop n'est pas activé, on affiche le message
 			printf("%ld %d %s",
 				actual_time() - philo->info->start_time, philo->id, msg);
 		pthread_mutex_unlock(&philo->info->write_mutex);
@@ -31,6 +38,13 @@ void	display_msg(t_utils_philo *philo, char *msg, int check_die)
 		pthread_mutex_unlock(&philo->info->write_mutex);
 }
 
+/**
+ * @brief Tout le processus allant du mesage de la recuperation de la fourchette à penser 
+ * 
+ * @param philo 
+ * @param rf 
+ * @param lf 
+ */
 void
 	mutex_fork(t_utils_philo *philo, pthread_mutex_t *rf, pthread_mutex_t *lf)
 {
@@ -56,6 +70,11 @@ void
 	display_msg(philo, THINK, 0); // Affiche penser pour le temps de l'execution de tt ca
 }
 
+/**
+ * @brief Processus de recuperation de la fourchette et fini avec le mutex_fork
+ * 
+ * @param philo 
+ */
 void	take_fork(t_utils_philo *philo)
 {
 	pthread_mutex_t	*r_fork;

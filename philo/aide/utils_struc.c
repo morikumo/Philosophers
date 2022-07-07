@@ -6,7 +6,7 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:31:12 by mabid             #+#    #+#             */
-/*   Updated: 2022/07/07 13:31:13 by mabid            ###   ########.fr       */
+/*   Updated: 2022/07/07 14:37:38 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ t_utils_arg	*init_struc(t_utils_arg *info, char **av)
 	return (info);
 }
 
+/**
+ * @brief Initialisation de la table de philosophe
+ * 
+ * @param philo 
+ * @param info 
+ * @param av 
+ * @return t_utils_philo* 
+ */
 t_utils_philo	*file_struc(t_utils_philo *philo, t_utils_arg *info, char **av)
 {
 	pthread_t	*thread;
@@ -42,7 +50,7 @@ t_utils_philo	*file_struc(t_utils_philo *philo, t_utils_arg *info, char **av)
 	int			nb;
 
 	i = -1;
-	nb = ft_atol(av[1]); //garde dans la variable nb le nombre de philo
+	nb = ft_atol(av[1]); // Garde dans la variable nb le nombre de philo
 	thread = malloc(sizeof(pthread_t) * nb); // Va mallocer les thread par le nombre de philo
 	while (++i < nb)
 	{
@@ -53,10 +61,10 @@ t_utils_philo	*file_struc(t_utils_philo *philo, t_utils_arg *info, char **av)
 		philo[i].to_eat = 0;
 		pthread_mutex_init(&philo[i].left_fork, NULL); // Declarer un mutex pour la fourchette gauche
 		if (i == nb - 1)
-			philo[i].right_fork = &philo[0].left_fork; //A voir : Pour le cas ou il y a un nombre impair
+			philo[i].right_fork = &philo[0].left_fork; // L'attribution de fourchette, lorsque l'on arrive qu dernier philo
 		else
-			philo[i].right_fork = &philo[i + 1].left_fork;// A voir : Pour le cas ou il y a un nombre pair
+			philo[i].right_fork = &philo[i + 1].left_fork;// Sinon attribuer une fourchette a la position i +1
 	}
-	free(thread); // Free thread pour l'allocation memoire du malloc au dessus
+	free(thread); // Free thread pour liberer l'allocation memoire du malloc au dessus
 	return (philo);
 }

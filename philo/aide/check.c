@@ -6,12 +6,18 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:29:35 by mabid             #+#    #+#             */
-/*   Updated: 2022/07/07 13:29:41 by mabid            ###   ########.fr       */
+/*   Updated: 2022/07/07 14:55:15 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
+/**
+ * @brief Check necessaire pour verifier que les philosophes sont mort ou non
+ * 
+ * @param philo 
+ * @return int 
+ */
 int	check_dead(t_utils_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->death_mutex);
@@ -30,7 +36,7 @@ int	check_dead(t_utils_philo *philo)
 }
 
 /**
- * @brief Va verifier les mutex
+ * @brief Va verifier selon la valeur de stop, si il est a 1, alors on arrete le programme
  * 
  * @param info 
  * @return int 

@@ -6,12 +6,18 @@
 /*   By: mabid <mabid@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:30:47 by mabid             #+#    #+#             */
-/*   Updated: 2022/07/07 13:30:49 by mabid            ###   ########.fr       */
+/*   Updated: 2022/07/07 14:52:37 by mabid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
+/**
+ * @brief La routine coeur de l'exécution du philosophe.
+ * 
+ * @param argv 
+ * @return void* 
+ */
 void	*routine(void *argv)
 {
 	t_utils_philo	*philo;
@@ -54,6 +60,11 @@ void	finish_prog(t_utils_philo *philo)
 	}
 }
 
+/**
+ * @brief Va creer les thread pour demarrer le programme
+ * 
+ * @param philo 
+ */
 void	create_thread(t_utils_philo *philo)
 {
 	int	i;
@@ -62,10 +73,10 @@ void	create_thread(t_utils_philo *philo)
 	while (i < philo->info->nb_philo) 
 	{
 		pthread_create(&philo[i].thread, NULL, &routine, &philo[i]); // Va creer un thread par philo et lancer la routine
-		usleep(2000); // Va patienter apres chaque signal de thread le temps de recevoir les info ect pour pas avoir de mort direct 
+		usleep(2000); // Va patienter pour la recuperation d'information
 		i++;
 	}
-	finish_prog(philo); // Finish_prog va fermer tout le mutex et thread en cours, si il y a une erreur
+	finish_prog(philo); // Finish_prog va fermer tout le mutex et thread en cours, si il y a une erreur dans la recuperation d'un argv par exemple, c'est un genre de securité
 }
 
 /**
