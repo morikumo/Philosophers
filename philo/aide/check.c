@@ -16,7 +16,7 @@ int	check_dead(t_utils_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->death_mutex);
 	if ((actual_time() - philo->info->start_time)
-		- philo->last_meal >= philo->info->time_die)
+		- philo->last_meal >= philo->info->time_die) // Si le temps restant - le start time et - le repqs est supérieur ou egal a time to die, alors on demarre le process
 	{
 		display_msg(philo, DEAD, 1);
 		pthread_mutex_lock(&philo->info->stop_mutex);
@@ -45,6 +45,12 @@ int	check_stop(t_utils_arg *info)
 	return (ret);
 }
 
+/**
+ * @brief Uniquement pour verifier si le nombre de repas limiter est atteint
+ * 
+ * @param philo 
+ * @return int 
+ */
 int	check_eat(t_utils_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->eat_mutex);

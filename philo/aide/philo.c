@@ -32,14 +32,14 @@ void	finish_prog(t_utils_philo *philo)
 	int	i;
 
 	i = 0;
-	while (check_stop(philo->info) == 0)
+	while (check_stop(philo->info) == 0) // Si info == 0, cela veut dire que l'on a aucun arg valable pour le programme. Donc si init_struc n'a pas marcher
 	{
-		if (check_dead(&philo[i]) == 0 || check_eat(philo) == 0)
+		if (check_dead(&philo[i]) == 0 || check_eat(philo) == 0) // Si file_struct n'a pas marcher
 		{
 			i = 0;
 			while (i < philo->info->nb_philo)
 			{
-				pthread_join(philo[i].thread, NULL); // Return NULL va fermer le thread en les initialisant a NULL
+				pthread_join(philo[i].thread, NULL); // Va join tout les thread mais comme il n'y a pas d'initialisation comme vu plus haut sa va juste les arreter.
 				i++;
 			}
 			i = -1;
